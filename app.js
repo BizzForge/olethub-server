@@ -1,8 +1,18 @@
 const express = require('express');
+const cors = require('cors');
+const usersRoutes = require('./src/users/routes')
 
 const app = express();
 
-const port = 3000;
+app.use(express.json())
+app.use(cors({
+    origin: 'http://localhost:3000', 
+    credentials: true
+}));
+app.use('/api/v1/users', usersRoutes)
+
+
+const port = 8081;
 
 app.get('/', (req, res) => {
     res.send('Hello Olet Hub')
